@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ju Yun-Ah · Performance Marketer</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:      #1a1a1a;
+  --ink-2:    #444;
+  --ink-3:    #888;
+  --paper:    #f8f6f1;
+  --cream:    #f0ece3;
+  --accent:   #1e3a5f;
+  --accent-2: #c8a96e;
+  --line:     rgba(30,58,95,.12);
+  --serif:    'Cormorant Garamond', Georgia, serif;
+  --sans:     'DM Sans', sans-serif;
+  --mono:     'DM Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.2rem 3rem;
+  background: rgba(248,246,241,.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-logo {
+  font-family: var(--serif); font-size: 1.15rem; font-weight: 500;
+  letter-spacing: .04em; color: var(--accent); text-decoration: none;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-size: .78rem; font-weight: 500; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink-2); text-decoration: none; transition: color .2s;
+}
+.nav-links a:hover { color: var(--accent); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 80px;
+}
+.hero-left {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 5rem 4rem 5rem 5rem;
+  border-right: 1px solid var(--line);
+  position: relative; overflow: hidden;
+}
+.hero-photo {
+  position: absolute; right: -30px; bottom: 0;
+  width: 55%; opacity: .08;
+  pointer-events: none;
+}
+.hero-tag {
+  display: inline-block; font-size: .72rem; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--accent-2); font-weight: 500; margin-bottom: 1.8rem;
+}
+.hero-name {
+  font-family: var(--serif);
+  font-size: clamp(3.5rem, 6vw, 5.5rem);
+  font-weight: 300; line-height: 1.05; color: var(--accent); margin-bottom: 1rem;
+}
+.hero-name em { font-style: italic; color: var(--accent-2); }
+.hero-sub { font-size: 1rem; color: var(--ink-2); max-width: 400px; margin-bottom: 2.5rem; line-height: 1.8; }
+.hero-contact { display: flex; flex-direction: column; gap: .4rem; font-family: var(--mono); font-size: .75rem; color: var(--ink-3); }
+.hero-contact span { display: flex; align-items: center; gap: .6rem; }
+.hero-contact span::before { content: '→'; color: var(--accent-2); font-family: var(--sans); }
+
+.hero-right {
+  position: relative; overflow: hidden;
+  background: var(--accent);
+}
+.hero-img {
+  width: 100%; height: 100%; object-fit: cover; object-position: right center;
+  opacity: .55; display: block;
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 3.5rem;
+  background: linear-gradient(to top, rgba(30,58,95,.92) 0%, rgba(30,58,95,.2) 60%, transparent 100%);
+}
+.hero-quote {
+  font-family: var(--serif); font-size: clamp(1.3rem, 2vw, 1.7rem);
+  font-weight: 300; color: #fff; line-height: 1.5; margin-bottom: 1rem;
+}
+.hero-quote em { font-style: italic; color: var(--accent-2); }
+.hero-quote-sub { font-size: .85rem; color: rgba(255,255,255,.65); line-height: 1.7; max-width: 360px; }
+
+/* SECTIONS */
+section { padding: 6rem 5rem; }
+section.alt { background: var(--cream); }
+.section-label {
+  font-size: .7rem; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--accent-2); margin-bottom: .6rem;
+}
+.section-title {
+  font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 300; color: var(--accent); margin-bottom: 3rem; line-height: 1.2;
+}
+
+/* EXPERIENCE */
+.exp-grid { display: grid; grid-template-columns: 260px 1fr; gap: 0; }
+.exp-left { padding-right: 3rem; border-right: 1px solid var(--line); }
+.exp-company { font-family: var(--serif); font-size: 1.4rem; font-weight: 500; color: var(--accent); margin-bottom: .3rem; }
+.exp-role { font-size: .82rem; color: var(--accent-2); font-weight: 500; letter-spacing: .06em; margin-bottom: .3rem; }
+.exp-period { font-family: var(--mono); font-size: .72rem; color: var(--ink-3); }
+.exp-right { padding-left: 3rem; }
+.exp-bullets { list-style: none; display: flex; flex-direction: column; gap: .8rem; }
+.exp-bullets li {
+  font-size: .88rem; color: var(--ink-2);
+  padding-left: 1.2rem; position: relative; line-height: 1.7;
+}
+.exp-bullets li::before {
+  content: ''; position: absolute; left: 0; top: .65rem;
+  width: 5px; height: 1px; background: var(--accent-2);
+}
+.exp-stat {
+  display: inline-block; font-family: var(--mono); font-size: .75rem;
+  background: var(--accent); color: #fff; padding: .15rem .5rem;
+  border-radius: 2px; margin-left: .3rem;
+}
+.exp-img-row {
+  margin-top: 2rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+}
+.exp-img-row img {
+  width: 100%; border-radius: 6px;
+  border: 1px solid var(--line);
+  box-shadow: 0 4px 20px rgba(0,0,0,.07);
+}
+
+/* PROJECTS */
+.projects-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1.5px; background: var(--line); border: 1px solid var(--line);
+}
+.project-card {
+  background: var(--paper); padding: 2.5rem;
+  display: flex; flex-direction: column; gap: 1rem;
+  transition: background .2s;
+}
+.project-card:hover { background: #fff; }
+.project-num { font-family: var(--mono); font-size: .7rem; color: var(--accent-2); letter-spacing: .1em; }
+.project-name { font-family: var(--serif); font-size: 1.15rem; font-weight: 500; color: var(--accent); line-height: 1.3; }
+.project-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+.tag { font-size: .65rem; letter-spacing: .08em; text-transform: uppercase; border: 1px solid var(--line); padding: .2rem .5rem; color: var(--ink-3); border-radius: 2px; }
+.project-img { width: 100%; border-radius: 4px; border: 1px solid var(--line); margin-top: .3rem; }
+.project-body { font-size: .84rem; color: var(--ink-2); line-height: 1.75; flex: 1; }
+.project-metrics { display: flex; flex-direction: column; gap: .4rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+.metric-row { display: flex; align-items: baseline; justify-content: space-between; font-family: var(--mono); font-size: .72rem; }
+.metric-label { color: var(--ink-3); }
+.metric-val { color: var(--accent); font-weight: 500; }
+
+/* LEADERSHIP */
+.leadership-list { display: flex; flex-direction: column; gap: 0; }
+.lead-item {
+  display: grid; grid-template-columns: 200px 1fr;
+  gap: 0; border-top: 1px solid var(--line); padding: 2rem 0;
+}
+.lead-item:last-child { border-bottom: 1px solid var(--line); }
+.lead-period { font-family: var(--mono); font-size: .72rem; color: var(--ink-3); padding-right: 2rem; padding-top: .1rem; }
+.lead-title { font-family: var(--serif); font-size: 1.1rem; font-weight: 500; color: var(--accent); margin-bottom: .2rem; }
+.lead-org { font-size: .78rem; color: var(--accent-2); margin-bottom: .6rem; letter-spacing: .04em; }
+.lead-desc { font-size: .85rem; color: var(--ink-2); line-height: 1.75; }
+.lead-highlight { display: inline-block; font-family: var(--mono); font-size: .72rem; color: var(--accent-2); margin-top: .5rem; }
+.lead-img { width: 100%; margin-top: 1rem; border-radius: 6px; border: 1px solid var(--line); box-shadow: 0 4px 20px rgba(0,0,0,.07); }
+
+/* SKILLS */
+.skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+.skill-group-title {
+  font-size: .7rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--accent-2); margin-bottom: 1rem; padding-bottom: .5rem; border-bottom: 1px solid var(--line);
+}
+.skill-list { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+.skill-item { display: flex; align-items: center; justify-content: space-between; font-size: .83rem; color: var(--ink-2); }
+.skill-dots { display: flex; gap: 3px; }
+.dot { width: 5px; height: 5px; border-radius: 50%; background: var(--line); }
+.dot.on { background: var(--accent); }
+
+/* FOOTER */
+footer {
+  background: var(--accent); color: rgba(255,255,255,.7);
+  padding: 3rem 5rem; display: flex; justify-content: space-between; align-items: center;
+}
+.footer-name { font-family: var(--serif); font-size: 1.4rem; color: #fff; font-weight: 300; }
+.footer-contact { display: flex; flex-direction: column; align-items: flex-end; gap: .3rem; font-family: var(--mono); font-size: .75rem; }
+
+/* ANIM */
+.fade-in { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
+.fade-in.visible { opacity: 1; transform: none; }
+
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-left { padding: 5rem 2rem 3rem; border-right: none; border-bottom: 1px solid var(--line); }
+  .hero-right { min-height: 55vw; }
+  section { padding: 4rem 1.5rem; }
+  .exp-grid { grid-template-columns: 1fr; }
+  .exp-left { border-right: none; border-bottom: 1px solid var(--line); padding-right: 0; padding-bottom: 1.5rem; margin-bottom: 1.5rem; }
+  .exp-right { padding-left: 0; }
+  .exp-img-row { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: repeat(2,1fr); }
+  .lead-item { grid-template-columns: 1fr; }
+  .lead-period { margin-bottom: .4rem; }
+  footer { flex-direction: column; gap: 1.5rem; text-align: center; padding: 3rem 1.5rem; }
+  .footer-contact { align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Ju Yun-Ah</a>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#leadership">Leadership</a></li>
+    <li><a href="#skills">Skills</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <span class="hero-tag">Performance Marketer · Seoul, Korea</span>
+    <h1 class="hero-name">Ju<br><em>Yun-Ah</em></h1>
+    <p class="hero-sub">
+      I don't start with a campaign — I start with
+      <em>why people don't act.</em> Then I redesign
+      the structure and measure what changes.
+    </p>
+    <div class="hero-contact">
+      <span>01049031614</span>
+      <span>juyunah1042@gmail.com</span>
+      <span>Seoul, South Korea</span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-overlay">
+      <blockquote class="hero-quote">
+        "The space where customers <em>stay</em><br>
+        is never an accident —<br>
+        it is <em>designed.</em>"
+      </blockquote>
+      <p class="hero-quote-sub">
+        Every project starts with a single question: what is stopping
+        people from moving? I find the barrier, redesign around it,
+        and verify with data.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">01 · Experience</div>
+  <h2 class="section-title">Where I've Proven It</h2>
+  <div class="exp-grid fade-in">
+    <div class="exp-left">
+      <div class="exp-company">Kkal-Kkal<br>Marketing</div>
+      <div class="exp-role">Performance Marketing Intern</div>
+      <div class="exp-period">Nov 2025 – Jan 2026</div>
+    </div>
+    <div class="exp-right">
+      <ul class="exp-bullets">
+        <li>Managed <strong>20+ advertiser accounts</strong> daily across Naver GFA, Naver SA, and Meta — monitored budget pacing and delivered Daily/Weekly performance reports</li>
+        <li>Identified ad-to-landing-page message mismatch as root cause of high early-exit rates; restructured layout and copy — bounce rate <span class="exp-stat">↓ ~20%</span> · CTA clicks <span class="exp-stat">↑ ~1.5×</span></li>
+        <li>Revived underperforming rug brand (ROAS &lt;100%) by reframing creative from feature specs to lifestyle pain-point messaging — <span class="exp-stat">ROAS 39% → 301%</span> <span class="exp-stat">CTR 1.42% → 2.33%</span></li>
+        <li>Proactively flagged data-backed optimizations before clients raised concerns, building reliable trust across every account</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="alt">
+  <div class="section-label">02 · Projects</div>
+  <h2 class="section-title">What I've Built</h2>
+  <div class="projects-grid">
+
+    <div class="project-card fade-in">
+      <div class="project-num">01 · Final Project</div>
+      <div class="project-name">Morundar Brand Campaign<br>「Every where, Every wear」</div>
+      <div class="project-tags">
+        <span class="tag">A/B Testing</span><span class="tag">Brand Strategy</span>
+        <span class="tag">Meta Ads</span><span class="tag">Python</span><span class="tag">p-value</span>
+      </div>
+      <p class="project-body">
+        Benchmarked market leader Andar and launched virtual athleisure brand.
+        Ran 2-stage A/B tests across 3 target segments. Identified FOMO/emotional
+        messaging outperformed functional copy — confirmed statistically.
+      </p>
+      <div class="project-metrics">
+        <div class="metric-row"><span class="metric-label">CTR</span><span class="metric-val">2.24% → 3.63%</span></div>
+        <div class="metric-row"><span class="metric-label">CPC reduction</span><span class="metric-val">₩1,354 → ₩341 (−74.8%)</span></div>
+        <div class="metric-row"><span class="metric-label">p-value</span><span class="metric-val">0.00091</span></div>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-num">02 · Advanced Project</div>
+      <div class="project-name">Airbnb NYC Market Segmentation &amp; Revenue Strategy</div>
+      <div class="project-tags">
+        <span class="tag">K-means</span><span class="tag">LightGBM</span>
+        <span class="tag">SHAP</span><span class="tag">Python</span><span class="tag">T-test</span>
+      </div>
+      <p class="project-body">
+        Segmented 40,000+ NYC listings into 4 price-based clusters.
+        Applied LightGBM + SHAP to rank actual booking drivers —
+        found minimum stay length and review volume outweigh price.
+        Delivered borough-specific strategies for budget vs. premium tiers.
+      </p>
+      <div class="project-metrics">
+        <div class="metric-row"><span class="metric-label">Market clusters</span><span class="metric-val">4 segments</span></div>
+        <div class="metric-row"><span class="metric-label">Key insight</span><span class="metric-val">Stay length &gt; price</span></div>
+        <div class="metric-row"><span class="metric-label">Validation</span><span class="metric-val">Elbow + Silhouette</span></div>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-num">03 · Core Project</div>
+      <div class="project-name">Ridi's Library — Data-Driven Churn Reduction</div>
+      <div class="project-tags">
+        <span class="tag">SQL</span><span class="tag">Python</span>
+        <span class="tag">User Segmentation</span><span class="tag">Funnel Analysis</span>
+      </div>
+      <p class="project-body">
+        Analyzed e-book platform user behavior to identify churn barriers.
+        Segmented by reading progress milestones (30%–60%–90%) and pinpointed
+        top drop-off causes: weak recommendation algorithm (33%) and UX friction (30%).
+      </p>
+      <div class="project-metrics">
+        <div class="metric-row"><span class="metric-label">Completion rate</span><span class="metric-val">projected +7%p</span></div>
+        <div class="metric-row"><span class="metric-label">Return visits</span><span class="metric-val">projected +5%p</span></div>
+        <div class="metric-row"><span class="metric-label">Top churn driver</span><span class="metric-val">Recommendation (33%)</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section id="leadership">
+  <div class="section-label">03 · Leadership</div>
+  <h2 class="section-title">How I Lead</h2>
+  <div class="leadership-list">
+
+    <div class="lead-item fade-in">
+      <div class="lead-period">2024</div>
+      <div class="lead-content">
+        <div class="lead-title">Director of Athletics</div>
+        <div class="lead-org">57th Student Council · Kangwon National University</div>
+        <p class="lead-desc">
+          Conceived and led the student council's inaugural marathon event.
+          Diagnosed near-zero early sign-ups as a participation-structure problem —
+          rebuilt the format with crew competition, 50% fee discount, and chartered bus,
+          then negotiated the revised structure directly with the host organization using data.
+        </p>
+        <span class="lead-highlight">327 sign-ups vs. KPI 300 · 2/3 joined via crew format</span>
+      </div>
+    </div>
+
+    <div class="lead-item fade-in">
+      <div class="lead-period">2024</div>
+      <div class="lead-content">
+        <div class="lead-title">Stage Production Director</div>
+        <div class="lead-org">
+          Baengnyeong Daedongje — largest annual campus festival (10,000+ attendees)<br>
+          Chuncheon University Alliance Festival
+        </div>
+        <p class="lead-desc">
+          Directed full stage operations for both major festivals: built cue-sheet-based
+          timetables, deployed 50-person staff with defined performer / crew / audience
+          zones to pre-empt crowd safety risks. Coordinated in real time with university
+          administration, local government, agencies, and artists.
+        </p>
+        <span class="lead-highlight">Zero-incident operations across both events</span>
+      </div>
+    </div>
+
+    <div class="lead-item fade-in">
+      <div class="lead-period">2022 – 2023</div>
+      <div class="lead-content">
+        <div class="lead-title">Media Director → Vice President</div>
+        <div class="lead-org">Department Student Council · Kangwon National University</div>
+        <p class="lead-desc">
+          Created SNS card-news and short-form video using meme and parody formats
+          to drive organic engagement. Promoted to Vice President in 2023, overseeing
+          department-wide operations and coordinating across university governing bodies.
+        </p>
+        <span class="lead-highlight">Excellence Award · National Short-Form Video Competition (JoongAng Ilbo × Chinese Embassy, 2025)</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="alt">
+  <div class="section-label">04 · Skills</div>
+  <h2 class="section-title">What I Work With</h2>
+  <div class="skills-grid">
+    <div class="skill-group fade-in">
+      <div class="skill-group-title">Ad Platforms</div>
+      <ul class="skill-list">
+        <li class="skill-item">Naver GFA<div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div></div></li>
+        <li class="skill-item">Meta Ads<div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div></div></li>
+        <li class="skill-item">Naver SA<div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div></li>
+        <li class="skill-item">Google Ads<div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div></li>
+      </ul>
+    </div>
+    <div class="skill-group fade-in">
+      <div class="skill-group-title">Tracking & Analytics</div>
+      <ul class="skill-list">
+        <li class="skill-item">GA4<div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div></div></li>
+        <li class="skill-item">GTM<div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div></li>
+        <li class="skill-item">UTM<div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div></li>
+      </ul>
+    </div>
+    <div class="skill-group fade-in">
+      <div class="skill-group-title">Data & Analysis</div>
+      <ul class="skill-list">
+        <li class="skill-item">Python (Pandas)<div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div></li>
+        <li class="skill-item">SQL<div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div></div></li>
+        <li class="skill-item">A/B Testing<div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div></div></li>
+        <li class="skill-item">K-means / SHAP<div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div></li>
+      </ul>
+    </div>
+    <div class="skill-group fade-in">
+      <div class="skill-group-title">Design & Collab</div>
+      <ul class="skill-list">
+        <li class="skill-item">Canva<div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div></div></li>
+        <li class="skill-item">Figma<div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div></li>
+        <li class="skill-item">Notion / Slack<div class="skill-dots"><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div><div class="dot on"></div></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-name">Ju Yun-Ah · 주윤아</div>
+  <div class="footer-contact">
+    <span>01049031614</span>
+    <span>juyunah1042@gmail.com</span>
+    <span>Seoul, South Korea</span>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
